@@ -11,24 +11,12 @@ import './App.css';
 function App() {
   const [theme, setTheme] = useState('dark');
   const [isHovering, setIsHovering] = useState(false);
-  const [ripples, setRipples] = useState([]);
   const dotRef = useRef(null);
   const ringRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-
-  // Handle Touch Burst Logic
-  useEffect(() => {
-    const handleClick = (e) => {
-       const newRipple = { id: Date.now(), x: e.clientX, y: e.clientY };
-       setRipples(prev => [...prev, newRipple]);
-       setTimeout(() => setRipples(prev => prev.filter(r => r.id !== newRipple.id)), 600);
-    };
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, []);
 
   // Handle Inertial Skew Scrolling Engine
   useEffect(() => {
@@ -116,13 +104,6 @@ function App() {
 
   return (
     <div className="container">
-      {ripples.map(ripple => (
-        <span 
-          key={ripple.id} 
-          className="ripple" 
-          style={{ left: ripple.x, top: ripple.y }} 
-        />
-      ))}
       <div ref={dotRef} className="cursor-dot" />
       <div ref={ringRef} className={`cursor-ring ${isHovering ? 'hovering' : ''}`} />
       
