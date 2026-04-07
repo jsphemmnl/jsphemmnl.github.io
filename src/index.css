@@ -99,6 +99,12 @@ a:hover {
   padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
 section {
   padding: 4rem 0;
   border-bottom: 1px solid var(--glass-border);

@@ -97,3 +97,24 @@
 .link:hover {
   border-bottom-color: var(--accent);
 }
+
+@media (max-width: 768px) {
+  .heroContent {
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .location, .links {
+    justify-content: center;
+  }
+  
+  .avatarGlass {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .hero {
+    padding-top: 5rem !important;
+  }
+}
