@@ -185,7 +185,7 @@ a:hover{
 section{
     padding-top:4vh;
     height:96vh;
-    margin:0 10rem;
+    margin: 0 clamp(1rem, 8vw, 10rem);
     box-sizing:border-box;
     min-height: fit-content;
 }
@@ -203,9 +203,17 @@ section{
 
 .section_pic-container{
     display: flex;
-    height: 400px;
-    width: 400px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
     margin:auto 0;
+}
+.section_pic-container img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
 }
 
 .section_text{
@@ -227,7 +235,7 @@ section{
 }
 
 .title{
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     text-align:center;
 }
 
@@ -294,18 +302,19 @@ section{
 }
 
 .about-containers{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap:2rem;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    width: 100%;
 }
 
 .about-details-container{
+    display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-.about-containers, .about-details-container{
-    display: flex;
+    width: 100%;
 }
 
 .icon_arrow{
@@ -337,11 +346,7 @@ section{
     height:80%;
 }
 
-.section_pic-container{
-    height: 400px;
-    width: 400px;
-    margin:auto 0;
-}
+/* section_pic-container styles consolidated above */
 
 #experience{
     position: relative;
@@ -350,7 +355,7 @@ section{
 .experience-sub-title{
     color: var(--text-color-secondary);
     font-weight: 600;
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
     margin-bottom: 2rem;
 }
 
@@ -400,8 +405,9 @@ article .icon{
 
 .project-img{
     border-radius:2rem;
-    width:30%;
-    height:30%;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
 }
 
 .project-title{
