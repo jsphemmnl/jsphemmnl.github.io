@@ -1,0 +1,45 @@
+.footer {
+  padding: 4rem 0 2rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.branding h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.branding p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.socialLink {
+  color: var(--text-secondary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.copyright {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
