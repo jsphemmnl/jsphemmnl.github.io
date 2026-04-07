@@ -115,8 +115,6 @@ function App() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', border: '1px solid var(--glass-border)',
           background: 'var(--glass-bg)', color: 'var(--text-primary)',
-          backdropFilter: 'blur(24px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
           boxShadow: '0 8px 32px 0 var(--glass-shadow)',
           transition: 'all 0.3s ease'
         }}
