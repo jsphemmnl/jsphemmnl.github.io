@@ -1,15 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body{
-    font-family: "Poppins",sans-serif;
+:root {
+    --bg-color: #ffffff;
+    --bg-color-secondary: #fafafa;
+    --text-color: #000000;
+    --text-color-secondary: rgb(85, 85, 85);
+    --border-color: rgb(163, 163, 163);
+    --accent-color: #00d2ff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --glass-bg: rgba(255, 255, 255, 0.6);
 }
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --bg-color-secondary: #1e1e1e;
+    --text-color: #ffffff;
+    --text-color-secondary: #b3b3b3;
+    --border-color: #444444;
+    --accent-color: #00d2ff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.5);
+    --glass-bg: rgba(30, 30, 30, 0.6);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Animations & Utilities */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+[data-theme="dark"] .icon { filter: invert(1); }
+[data-theme="dark"] .project-img { filter: brightness(0.85); }
 
 html{
     scroll-behavior: smooth;
 }
 
 p{
-    color:rgb(85,85,85);
+    color: var(--text-color-secondary);
 }
 
 a, .btn{
@@ -33,16 +83,15 @@ nav{
 }
 
 a{
-    color:black;
+    color: var(--text-color);
     text-decoration: none;
-    text-decoration-color: none;
 }
 
 a:hover{
-    color:grey;
+    color: var(--accent-color);
     text-decoration:underline;
     text-underline-offset: 1rem;
-    text-decoration-color:rgb(181,181,181);
+    text-decoration-color: var(--accent-color);
 }
 
 .logo{
@@ -74,19 +123,21 @@ a:hover{
 .hamburger-icon span{
     width:100%;
     height:2px;
-    background-color:black;
-    transition:all 0.3 ease-in-out;
+    background-color: var(--text-color);
+    transition:all 0.3s ease-in-out;
 }
 
 .menu-links{
     position:absolute;
     top:100%;
     right:0%;
-    background-color:white;
+    background-color: var(--bg-color-secondary);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
     width:fit-content;
     max-height:0;
     overflow: hidden;
-    transition:all 0.3 ease-in-out;
+    transition:all 0.3s ease-in-out;
 }
 
 .menu-links a{
@@ -94,9 +145,9 @@ a:hover{
     padding:10px;
     text-align:center;
     font-size: 1.5rem;
-    color:black;
+    color: var(--text-color);
     text-decoration: none;
-    transition:all 0.3 ease-in-out;
+    transition:all 0.3s ease-in-out;
 }
 
 .menu-links li{
@@ -207,7 +258,8 @@ section{
 }
 
 .btn-color-1, .btn-color-2{
-    border: rgb(53,53,53) 0.1rem solid;
+    border: var(--border-color) 0.1rem solid;
+    color: var(--text-color);
 }
 
 .btn-color-1:hover, .btn-color-2:hover{
@@ -215,12 +267,14 @@ section{
 }
 
 .btn-color-1, .btn-color-2:hover{
-    background-color: rgb(53,53,53);
-    color:white;
+    background-color: var(--text-color);
+    color: var(--bg-color);
 }
 
 .btn-color-1:hover{
-    background-color: rgb(0,0,0);
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
 }
 
 .btn-color-2{
@@ -228,7 +282,7 @@ section{
 }
 
 .btn-color-2:hover{
-    border:rgb(255,255,255) 0.1rem solid;
+    border: var(--border-color) 0.1rem solid;
 }
 
 .btn-container{
@@ -263,11 +317,19 @@ section{
 .details-container{
     padding: 1.5rem;
     flex:1;
-    background:white;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius:2rem;
-    border: rgb(53,53,53) 0.1rem solid;
-    border-color: rgb(163,163,163);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.details-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.15);
 }
 
 .section-container{
@@ -286,7 +348,7 @@ section{
 }
 
 .experience-sub-title{
-    color:rgb(85,85,85);
+    color: var(--text-color-secondary);
     font-weight: 600;
     font-size: 1.75rem;
     margin-bottom: 2rem;
@@ -327,8 +389,13 @@ article .icon{
 }
 
 .color-container{
-    border-color:rgb(163,163,163);
-    background: rgb(250,250,250);
+    border-color: var(--border-color);
+    background: var(--glass-bg);
+}
+
+.placeholder-img {
+    background: linear-gradient(135deg, var(--bg-color-secondary), var(--border-color));
+    display: inline-block;
 }
 
 .project-img{
@@ -343,8 +410,8 @@ article .icon{
 }
 
 .project-btn{
-    color:black;
-    border-color: rgb(163,163,163);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 #contact{
@@ -358,9 +425,10 @@ article .icon{
     display:flex;
     justify-content: center;
     border-radius: 2rem;
-    border: rgb(53,53,53) 0.1rem solid;
-    border-color: rgb(163,163,163);
-    background: rgb(250,250,250);
+    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
     margin:2rem auto;
     padding:0.5rem;
 }
