@@ -11,7 +11,7 @@ const projects = [
   },
   {
     title: 'Streamline',
-    description: 'A River Monitoring System for LGUs and Government Agencies.',
+    description: 'A Water Quality Monitoring System for LGUs and Government Agencies.',
     demoLink: '#',
     githubLink: 'https://github.com/jp-gerona/Streamline',
     isPrivate: true,
