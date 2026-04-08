@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  FaReact, FaHtml5, FaCss3Alt, FaPython, FaJava, FaGitAlt, FaGithub, FaDocker, FaMapMarkedAlt, FaMicrochip, FaWifi, FaMobileAlt, FaCode, FaFlask, FaLinkedin 
+  FaReact, FaHtml5, FaCss3Alt, FaPython, FaJava, FaGitAlt, FaGithub, FaDocker, FaMapMarkedAlt, FaMicrochip, FaWifi, FaMobileAlt, FaCode, FaFlask 
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiVite, SiDjango, SiTypescript, SiJavascript, SiPhp, SiC, SiCplusplus,
