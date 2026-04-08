@@ -6,6 +6,7 @@ import TechStack from './components/TechStack';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
+import Navbar from './components/Navbar';
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -29,8 +30,14 @@ function App() {
       const deltaY = currentY - lastY;
       lastY = currentY;
 
-      // Map scroll speed into a physical boundary (cap at 3 degrees warp)
-      targetSkew = Math.min(Math.max(deltaY * 0.05, -3), 3);
+      // Check OS-level motion sickness boundaries
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Cap at 1.5 degrees warp instead of 3 for less intense dizziness 
+      targetSkew = Math.min(Math.max(deltaY * 0.05, -1.5), 1.5);
+      
+      // Zero out structural warp if user disabled motion
+      if (prefersReducedMotion) targetSkew = 0;
       
       // Interpolate smoothly (lerp)
       currentSkew += (targetSkew - currentSkew) * 0.15; 
@@ -103,24 +110,33 @@ function App() {
   };
 
   return (
-    <div className="max-w-[900px] mx-auto px-5 md:px-8">
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className={`cursor-ring ${isHovering ? 'hovering' : ''}`} />
-      
-      <button 
-        onClick={toggleTheme} 
-        className="fixed top-6 right-6 z-[1000] w-12 h-12 rounded-full flex items-center justify-center cursor-pointer border border-glass-border bg-glass-bg text-text-primary shadow-glass transition-all duration-300"
-      >
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
+    <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[9999] px-4 py-2 bg-accent text-white font-bold rounded">
+        Skip to content
+      </a>
 
-      <Hero />
+      <Navbar />
+
+      <main id="main-content" className="max-w-[900px] mx-auto px-5 md:px-8 pt-24">
+        <div ref={dotRef} className="cursor-dot hidden md:block" />
+        <div ref={ringRef} className={`cursor-ring hidden md:block ${isHovering ? 'hovering' : ''}`} />
+        
+        <button 
+          onClick={toggleTheme} 
+          aria-label="Toggle theme"
+          className="fixed bottom-6 right-6 md:top-6 md:bottom-auto z-[1000] w-12 h-12 rounded-full flex items-center justify-center cursor-pointer border border-glass-border bg-glass-bg text-text-primary shadow-[0_8px_32px_0_var(--glass-shadow)] transition-all duration-300 hover:scale-110"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+
+        <Hero />
       <About />
       <TechStack />
       <Projects />
       <Certifications />
       <Contact />
-    </div>
+      </main>
+    </>
   );
 }
 

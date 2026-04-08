@@ -49,8 +49,16 @@
     --glass-glow: rgba(59, 130, 246, 0.3);
   }
 
-  * {
-    cursor: none !important;
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   body {

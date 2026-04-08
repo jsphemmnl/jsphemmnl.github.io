@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  Server, Box, Database, HardDrive, Cpu, Code, 
-  LayoutTemplate, PlayCircle, TestTube, CheckCircle, 
-  Globe, FileCode2, Code2, Terminal, Braces, 
-  Smartphone, GitBranch, GitPullRequest, Workflow, Wifi,
-  Wind, Component, Zap, Key, Lock, Map, Layers, Atom
-} from 'lucide-react';
+  FaReact, FaHtml5, FaCss3Alt, FaPython, FaJava, FaGitAlt, FaGithub, FaDocker, FaMapMarkedAlt, FaMicrochip, FaWifi, FaMobileAlt, FaCode, FaFlask, FaLinkedin 
+} from 'react-icons/fa';
+import { 
+  SiTailwindcss, SiVite, SiDjango, SiTypescript, SiJavascript, SiPhp, SiC, SiCplusplus,
+  SiPostgresql, SiSqlite, SiRedis, SiMinio, SiGithubactions, SiRailway, SiPytest, SiVitest, SiMapbox
+} from 'react-icons/si';
+import { TbAtom } from 'react-icons/tb';
 
 interface TechItem {
   name: string;
@@ -21,75 +22,72 @@ const skillCategories: TechCategory[] = [
   {
     title: 'Frontend & Mobile',
     skills: [
-      { name: 'React', icon: <LayoutTemplate size={20} /> },
-      { name: 'Tailwind', icon: <Wind size={20} /> },
-      { name: 'shadcn', icon: <Component size={20} /> },
-      { name: 'Vite', icon: <Zap size={20} /> },
-      { name: 'HTML', icon: <Globe size={20} /> },
-      { name: 'CSS', icon: <LayoutTemplate size={20} /> },
-      { name: 'Jotai', icon: <Atom size={20} /> },
-      { name: 'Xamarin', icon: <Smartphone size={20} /> },
+      { name: 'React', icon: <FaReact size={24} /> },
+      { name: 'Tailwind', icon: <SiTailwindcss size={24} /> },
+      { name: 'Vite', icon: <SiVite size={24} /> },
+      { name: 'HTML', icon: <FaHtml5 size={24} /> },
+      { name: 'CSS', icon: <FaCss3Alt size={24} /> },
+      { name: 'Jotai', icon: <TbAtom size={24} /> },
+      { name: 'Xamarin', icon: <FaMobileAlt size={24} /> },
     ]
   },
   {
     title: 'Backend & Languages',
     skills: [
-      { name: 'Django', icon: <Code size={20} /> },
-      { name: 'DRF', icon: <Code2 size={20} /> },
-      { name: 'Python', icon: <Terminal size={20} /> },
-      { name: 'GeoDjango', icon: <Globe size={20} /> },
-      { name: 'SimpleJWT', icon: <Lock size={20} /> },
-      { name: 'TypeScript', icon: <Code2 size={20} /> },
-      { name: 'JavaScript', icon: <Code2 size={20} /> },
-      { name: 'PHP', icon: <FileCode2 size={20} /> },
-      { name: 'Java', icon: <Terminal size={20} /> },
-      { name: 'C', icon: <Braces size={20} /> },
-      { name: 'C++', icon: <Braces size={20} /> },
-      { name: 'C#', icon: <Braces size={20} /> },
+      { name: 'Django', icon: <SiDjango size={24} /> },
+      { name: 'DRF', icon: <SiDjango size={24} /> },
+      { name: 'Python', icon: <FaPython size={24} /> },
+      { name: 'GeoDjango', icon: <SiDjango size={24} /> },
+      { name: 'TypeScript', icon: <SiTypescript size={24} /> },
+      { name: 'JavaScript', icon: <SiJavascript size={24} /> },
+      { name: 'PHP', icon: <SiPhp size={24} /> },
+      { name: 'Java', icon: <FaJava size={24} /> },
+      { name: 'C', icon: <SiC size={24} /> },
+      { name: 'C++', icon: <SiCplusplus size={24} /> },
+      { name: 'C#', icon: <FaCode size={24} /> },
     ]
   },
   {
     title: 'Databases & Storage',
     skills: [
-      { name: 'SQL', icon: <Database size={20} /> },
-      { name: 'PostgreSQL', icon: <Database size={20} /> },
-      { name: 'PostGIS', icon: <Map size={20} /> },
-      { name: 'SQLite', icon: <Database size={20} /> },
-      { name: 'Redis', icon: <Database size={20} /> },
-      { name: 'MinIO', icon: <HardDrive size={20} /> },
+      { name: 'PostgreSQL', icon: <SiPostgresql size={24} /> },
+      { name: 'PostGIS', icon: <SiPostgresql size={24} /> },
+      { name: 'SQLite', icon: <SiSqlite size={24} /> },
+      { name: 'Redis', icon: <SiRedis size={24} /> },
+      { name: 'MinIO', icon: <SiMinio size={24} /> },
     ]
   },
   {
     title: 'Maps & GIS',
     skills: [
-      { name: 'MapLibre GL', icon: <Map size={20} /> },
-      { name: 'deck.gl', icon: <Layers size={20} /> },
+      { name: 'MapLibre GL', icon: <FaMapMarkedAlt size={24} /> },
+      { name: 'deck.gl', icon: <SiMapbox size={24} /> },
     ]
   },
   {
     title: 'Version Control & DevOps',
     skills: [
-      { name: 'Git', icon: <GitBranch size={20} /> },
-      { name: 'GitHub', icon: <GitPullRequest size={20} /> },
-      { name: 'GitHub Actions', icon: <Workflow size={20} /> },
-      { name: 'Docker', icon: <Box size={20} /> },
-      { name: 'Railway', icon: <Server size={20} /> },
+      { name: 'Git', icon: <FaGitAlt size={24} /> },
+      { name: 'GitHub', icon: <FaGithub size={24} /> },
+      { name: 'GitHub Actions', icon: <SiGithubactions size={24} /> },
+      { name: 'Docker', icon: <FaDocker size={24} /> },
+      { name: 'Railway', icon: <SiRailway size={24} /> },
     ]
   },
   {
     title: 'Testing & Automation',
     skills: [
-      { name: 'Playwright', icon: <PlayCircle size={20} /> },
-      { name: 'Pytest', icon: <TestTube size={20} /> },
-      { name: 'Vitest', icon: <CheckCircle size={20} /> },
+      { name: 'Playwright', icon: <FaFlask size={24} /> },
+      { name: 'Pytest', icon: <SiPytest size={24} /> },
+      { name: 'Vitest', icon: <SiVitest size={24} /> },
     ]
   },
   {
     title: 'Hardware & IoT',
     skills: [
-      { name: 'Arduino', icon: <Cpu size={20} /> },
-      { name: 'ESP Microcontrollers', icon: <Cpu size={20} /> },
-      { name: 'Wemos', icon: <Wifi size={20} /> },
+      { name: 'Arduino', icon: <FaMicrochip size={24} /> },
+      { name: 'ESP Microcontrollers', icon: <FaMicrochip size={24} /> },
+      { name: 'Wemos', icon: <FaWifi size={24} /> },
     ]
   }
 ];
