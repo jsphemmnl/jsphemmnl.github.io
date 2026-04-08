@@ -6,9 +6,18 @@ import {
   Smartphone, GitBranch, GitPullRequest, Workflow, Wifi,
   Wind, Component, Zap, Key, Lock, Map, Layers, Atom
 } from 'lucide-react';
-import styles from './TechStack.module.css';
 
-const skillCategories = [
+interface TechItem {
+  name: string;
+  icon: React.ReactNode;
+}
+
+interface TechCategory {
+  title: string;
+  skills: TechItem[];
+}
+
+const skillCategories: TechCategory[] = [
   {
     title: 'Frontend & Mobile',
     skills: [
@@ -85,30 +94,33 @@ const skillCategories = [
   }
 ];
 
-const TechStack = () => {
-  const [showAll, setShowAll] = useState(false);
+const TechStack: React.FC = () => {
+  const [showAll, setShowAll] = useState<boolean>(false);
   const displayedCategories = showAll ? skillCategories : skillCategories.slice(0, 2);
 
   return (
-    <section id="tech-stack">
-      <h2 className="section-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <section id="tech-stack" className="py-16 border-b border-glass-border last-of-type:border-none">
+      <h2 className="text-2xl font-bold mb-8 text-text-primary flex justify-between items-center">
         Tech Stack
-        <button onClick={() => setShowAll(!showAll)} className={styles.showAllBtn}>
+        <button 
+          onClick={() => setShowAll(!showAll)} 
+          className="bg-transparent border-none text-accent text-base font-semibold cursor-pointer transition-colors duration-200 hover:underline hover:text-text-primary"
+        >
           {showAll ? 'Show Less' : 'View All'}
         </button>
       </h2>
-      <div className={styles.categories}>
+      <div className="flex flex-col gap-10">
         {displayedCategories.map((category, idx) => (
-          <div key={idx} className={styles.categoryBlock}>
-            <h3 className={styles.categoryTitle}>{category.title}</h3>
-            <div className={styles.grid}>
+          <div key={idx}>
+            <h3 className="text-lg font-semibold mb-5 text-text-secondary">{category.title}</h3>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
               {(showAll ? category.skills : category.skills.slice(0, 3)).map((skill, index) => (
-                <div key={index} className={`glass-card ${styles.card}`}>
-                  <div className={styles.iconWrapper}>
+                <div key={index} className="glass-card flex items-center gap-4 px-6 py-4">
+                  <div className="flex items-center justify-center text-accent">
                     {skill.icon}
                   </div>
                   <div>
-                    <h3 className={styles.name}>{skill.name}</h3>
+                    <h3 className="text-base font-semibold">{skill.name}</h3>
                   </div>
                 </div>
               ))}

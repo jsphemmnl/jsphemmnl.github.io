@@ -6,13 +6,12 @@ import TechStack from './components/TechStack';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
-import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
-  const [isHovering, setIsHovering] = useState(false);
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -23,7 +22,7 @@ function App() {
     let lastY = window.scrollY;
     let targetSkew = 0;
     let currentSkew = 0;
-    let animationFrameId;
+    let animationFrameId: number;
 
     const updatePhysics = () => {
       const currentY = window.scrollY;
@@ -52,7 +51,7 @@ function App() {
   // Handle Magnetic Cursor Logic
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
       
@@ -65,7 +64,7 @@ function App() {
       }
     };
     
-    const handleTouchMove = (e) => {
+    const handleTouchMove = (e: TouchEvent) => {
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
       
@@ -87,8 +86,9 @@ function App() {
   }, [isHovering]);
 
   useEffect(() => {
-    const handleMouseOver = (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) {
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.closest('a') || target.closest('button'))) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
@@ -103,21 +103,13 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="max-w-[900px] mx-auto px-5 md:px-8">
       <div ref={dotRef} className="cursor-dot" />
       <div ref={ringRef} className={`cursor-ring ${isHovering ? 'hovering' : ''}`} />
       
       <button 
         onClick={toggleTheme} 
-        style={{
-          position: 'fixed', top: '1.5rem', right: '1.5rem', zIndex: 1000,
-          width: '48px', height: '48px', borderRadius: '50%',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', border: '1px solid var(--glass-border)',
-          background: 'var(--glass-bg)', color: 'var(--text-primary)',
-          boxShadow: '0 8px 32px 0 var(--glass-shadow)',
-          transition: 'all 0.3s ease'
-        }}
+        className="fixed top-6 right-6 z-[1000] w-12 h-12 rounded-full flex items-center justify-center cursor-pointer border border-glass-border bg-glass-bg text-text-primary shadow-glass transition-all duration-300"
       >
         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
       </button>

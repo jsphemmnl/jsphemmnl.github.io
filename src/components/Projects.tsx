@@ -1,8 +1,15 @@
 import React from 'react';
 import { ExternalLink, Code2 } from 'lucide-react';
-import styles from './Projects.module.css';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  demoLink: string;
+  githubLink: string;
+  isPrivate?: boolean;
+}
+
+const projects: Project[] = [
   {
     title: 'E-Rehistro',
     description: 'A Comprehensive Voters Registry System.',
@@ -43,23 +50,23 @@ const projects = [
   }
 ];
 
-const Projects = () => {
+const Projects: React.FC = () => {
   return (
-    <section id="projects">
-      <h2 className="section-title">Recent Projects</h2>
-      <div className={styles.grid}>
+    <section id="projects" className="py-16 border-b border-glass-border last-of-type:border-none">
+      <h2 className="text-2xl font-bold mb-8 text-text-primary">Recent Projects</h2>
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6">
         {projects.map((project, index) => (
-          <div key={index} className={`glass-card ${styles.card}`}>
-            <h3 className={styles.title}>{project.title}</h3>
-            <p className={styles.desc}>{project.description}</p>
-            <div className={styles.links}>
+          <div key={index} className="glass-card flex flex-col">
+            <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+            <p className="text-[0.95rem] text-text-secondary mb-6 flex-grow">{project.description}</p>
+            <div className="flex gap-4">
               {project.githubLink !== '#' && (
-                <a href={project.githubLink} target="_blank" rel="noreferrer" className={styles.link}>
+                <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-[0.9rem] font-semibold text-text-primary hover:text-accent transition-colors duration-300">
                   <Code2 size={16} /> Source {project.isPrivate ? '(Private)' : ''}
                 </a>
               )}
               {project.demoLink !== '#' && (
-                <a href={project.demoLink} target="_blank" rel="noreferrer" className={styles.link}>
+                <a href={project.demoLink} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-[0.9rem] font-semibold text-text-primary hover:text-accent transition-colors duration-300">
                   <ExternalLink size={16} /> Demo
                 </a>
               )}
